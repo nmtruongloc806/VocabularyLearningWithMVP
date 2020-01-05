@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/view_language"
+    android:orientation="vertical"
     tools:context=".view.fragment.LanguageFragment">
-
-    <View
-        android:id="@+id/bg_color"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/bg_screen1"
-        />
 
     <!-- TODO: Update blank fragment layout -->
     <ImageView
         android:id="@+id/img_logo"
         android:layout_width="wrap_content"
-        android:layout_height="500dp"
+        android:layout_height="400dp"
         android:src="@drawable/image_androidstudio" />
 
     <TextView
@@ -27,56 +22,5 @@
         android:textSize="20sp"
         android:textColor="#ffffff"
         android:layout_alignBottom="@id/img_logo"
-        android:text="Android Studio provides the fastest tools for building apps on every type of Android device." />
-
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorAccent"
-        android:layout_alignParentBottom="true"
-        android:padding="10dp"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Skip"
-            android:textColor="#ffffff"
-            android:layout_alignParentLeft="true"
-            />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:orientation="horizontal"
-            >
-            <View
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:background="@drawable/bg_indicator_active"
-                />
-            <View
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:background="@drawable/bg_indicator_inactive"
-                />
-            <View
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:background="@drawable/bg_indicator_inactive"
-                />
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Next"
-            android:textColor="#ffffff"
-            android:layout_alignParentRight="true"
-            />
-    </RelativeLayout>
-</RelativeLayout>
+        android:text="sdasdad." />
+</LinearLayout>

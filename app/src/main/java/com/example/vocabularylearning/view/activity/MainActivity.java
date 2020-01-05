@@ -9,20 +9,40 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.example.vocabularylearning.R;
-import com.example.vocabularylearning.view.fragment.MainFragment;
+import com.example.vocabularylearning.view.fragment.MainIntroFragment;
+import com.example.vocabularylearning.view.fragment.MainLoginFragment;
 
 public class MainActivity extends AppCompatActivity {
+    FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        MainFragment mainFragment = MainFragment.newInstance();
-        fragmentTransaction.replace(R.id.frame_container,mainFragment);
-        fragmentTransaction.commit();
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        fragmentTransaction = fragmentManager.beginTransaction();
+
+        showMainLoginFragment();
+    }
+
+    private void showMainIntroFragment() {
+        MainIntroFragment mainIntroFragment = MainIntroFragment.newInstance();
+        mainIntroFragment.setOnChangeFragment(new MainIntroFragment.OnChangeFragment() {
+            @Override
+            public void changeFragment() {
+                showMainLoginFragment();
+            }
+        });
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_container, mainIntroFragment).commit();
+    }
+
+
+    private void showMainLoginFragment() {
+        MainLoginFragment mainLoginFragment = MainLoginFragment.newInstance();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.anim_right_in,R.anim.anim_right_out)
+                .replace(R.id.frame_container, mainLoginFragment).commit();
     }
 }
