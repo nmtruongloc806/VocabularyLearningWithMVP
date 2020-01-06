@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.example.vocabularylearning.R;
@@ -30,7 +31,7 @@ import com.example.vocabularylearning.R;
 public class MainLoginFragment extends Fragment {
 
     View viewroot;
-    RelativeLayout viewContainer;
+    LinearLayout viewContainer;
     public MainLoginFragment() {
         // Required empty public constructor
     }
