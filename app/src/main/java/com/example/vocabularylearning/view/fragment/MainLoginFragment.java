@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -28,10 +29,11 @@ import com.example.vocabularylearning.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainLoginFragment extends Fragment {
+public class MainLoginFragment extends Fragment implements View.OnClickListener {
 
     View viewroot;
-    LinearLayout viewContainer;
+    RelativeLayout viewContainer;
+    Button btnlogin,btnregister;
     public MainLoginFragment() {
         // Required empty public constructor
     }
@@ -46,8 +48,31 @@ public class MainLoginFragment extends Fragment {
                              Bundle savedInstanceState) {
         viewroot = inflater.inflate(R.layout.fragment_main_login, container, false);
         viewContainer = viewroot.findViewById(R.id.viewContainer);
+        btnlogin = viewroot.findViewById(R.id.btnlogin);
+        btnregister = viewroot.findViewById(R.id.btnregister);
+
+        btnlogin.setSelected(true);
+        btnlogin.setOnClickListener(this);
+        btnregister.setOnClickListener(this);
+
+        replaceLoginFragment();
         DrawBackground();
         return viewroot;
+    }
+
+    private void replaceLoginFragment(){
+        LoginFragment loginFragment = LoginFragment.newInstance();
+        getChildFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.anim_left_in,R.anim.anim_left_out)
+                .replace(R.id.fragment_field, loginFragment)
+                .commit();
+    }
+    private void replaceRegisterFragmentFragment(){
+        RegisterFragment registerFragment = RegisterFragment.newInstance();
+        getChildFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.anim_right_in,R.anim.anim_right_out)
+                .replace(R.id.fragment_field, registerFragment)
+                .commit();
     }
 
     private void DrawBackground()
@@ -55,19 +80,36 @@ public class MainLoginFragment extends Fragment {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         final int width = displayMetrics.widthPixels;
-        final int height = 800;
+        final int halfHeight = displayMetrics.heightPixels / 2;
 
         ShapeDrawable mDrawable = new ShapeDrawable(new Shape() {
             @Override
             public void draw(Canvas canvas, Paint paint) {
                 paint.setColor(0xff74AC23);
                 Path mPath = new Path();
-                mPath.lineTo(0,(float)(height * 0.85));
-                mPath.quadTo(width / 2,height,width,(float)(height * 0.85));
+                mPath.lineTo(0,(float)(halfHeight * 0.85));
+                mPath.quadTo(width / 2, halfHeight, width,(float)(halfHeight * 0.85));
                 mPath.lineTo(width,0);
                 canvas.drawPath(mPath,paint);
             }
         });
         viewContainer.setBackground(mDrawable);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.btnlogin:
+                btnlogin.setSelected(true);
+                btnregister.setSelected(false);
+                replaceLoginFragment();
+                break;
+            case R.id.btnregister:
+                btnlogin.setSelected(false);
+                btnregister.setSelected(true);
+                replaceRegisterFragmentFragment();
+                break;
+        }
     }
 }

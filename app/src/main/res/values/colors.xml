@@ -10,4 +10,9 @@
 <color name="bg_screen1">#3999d8</color>
 <color name="bg_screen2">#bdbdbd</color>
 <color name="bg_screen3">#2bbffd</color>
+
+
+<!--login_register_selector -->
+<color name="login_selected">#2bbffd</color>
+<color name="login_unselected">#bdbdbd</color>
 </resources>
